@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <title>پیش‌بینی زلزله</title>
+  <style>
+    body { background:#0b1020; color:#e9eefb; font-family: Vazirmatn, Arial; }
+    .container { max-width:900px; margin:0 auto; padding:20px; }
+    .card { background:#141a2f; border-radius:16px; padding:20px; }
+    input { width:100%; padding:8px; border-radius:8px; margin-bottom:10px; }
+    button { background:#7aa2ff; border:none; padding:10px 16px; border-radius:8px; cursor:pointer; font-weight:bold; }
+    a.btn { background:#253155; padding:8px 12px; border-radius:8px; text-decoration:none; color:#fff; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>پیش‌بینی زلزله</h1>
+      <form method="post" action="/predict">
+        {% for f in features %}
+          {% if f != 'time' %}   <!-- حذف فیلد time قبلی -->
+            <label>{{ f }}</label>
+            <input type="number" step="any" name="{{ f }}" required /><br>
+          {% endif %}
+        {% endfor %}
+        <label>Time (YYYY-MM-DD HH:MM:SS)</label>
+        <input type="text" name="time_input" placeholder="2025-09-06 12:30:00" required /><br>
+        <button type="submit">پیش‌بینی کن</button>
+      </form>
+      <div style="margin-top:10px;">
+        <a class="btn" href="/leaderboard">Leaderboard</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+
+
